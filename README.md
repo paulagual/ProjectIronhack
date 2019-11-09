@@ -1,6 +1,4 @@
-<div valign='right'>
-<img src="https://bit.ly/2VnXWr2" alt="Ironhack Logo" width="100"/>
-</div>
+<img src="https://bit.ly/2VnXWr2" alt="Ironhack Logo" width="100" align="right"/>
 
 <img src="https://cloud.google.com/images/solutions/big-data/big-data_2x.png?hl=es" alt="Google Analytics Project" width="300"/>
 
