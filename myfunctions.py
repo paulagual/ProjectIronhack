@@ -1,4 +1,6 @@
 # My functions
+
+#### EDA FUNCTIONS ####
 def desc_num(x, bins=100, name='column'):
     import seaborn as sns
     import matplotlib.pyplot as plt
@@ -37,5 +39,22 @@ def desc_cat(df,col, name='column'):
     bar.columns = [col,'count']
     sns.barplot(x=col, y='count', data=bar)
     plt.title(f'Bar chart {name}')
+    plt.xticks(rotation=90)
+    plt.show()
+    
+    
+def desc_cat_target(df, col, target, name='column'):
+    import seaborn as sns
+    import matplotlib.pyplot as plt
+    import math
+    '''
+    Compare the values of the categorical with the target
+    input= dataframe column
+    outut= column values compared to the target and stacked bar chart column / target
+    '''
+    df_grouped = df.groupby(col)[target].value_counts().unstack(level=1).fillna(0)
+    print(df_grouped)
+    df_grouped.plot.bar(stacked=True, figsize=(10, 6))    
+    plt.title(f'Stacked Bar chart {name} vs target')
     plt.xticks(rotation=90)
     plt.show()
