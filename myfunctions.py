@@ -1,5 +1,20 @@
 # My functions
 
+#### PREPROCESSING FUNCTIONS #####
+
+def percentNulls(df):
+    '''
+    Detect the columns that have a higher number of nulls
+    input= dataframe 
+    outut= name of the columns and % of nulls higher of 10%
+    '''        
+    for col in df.columns:
+        if df[col].isnull().sum() > 0:
+            ratio = df[col].isnull().sum()/len(df['deviceBrowser'])
+            if ratio > 0.1:
+                print(f'**{col}** % Nulls is {round(ratio*100,2)}')
+
+
 #### EDA FUNCTIONS ####
 def desc_num(x, bins=100, name='column'):
     import seaborn as sns
