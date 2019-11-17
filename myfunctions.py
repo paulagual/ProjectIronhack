@@ -73,3 +73,27 @@ def desc_cat_target(df, col, target, name='column'):
     plt.title(f'Stacked Bar chart {name} vs target')
     plt.xticks(rotation=90)
     plt.show()
+    
+    
+    #### MODEL FUNCTIONS ####
+    
+def plot_feat_imp(model, number,predictors):
+    import pandas as pd
+    feat_imp = pd.Series(model.feature_importances_).sort_values(ascending=False)
+    feat_imp = feat_imp[0:number]
+    name = []
+    for i in feat_imp.index.tolist():
+        name.append(predictors[i])
+        feat_imp.plot(kind='bar', title='Feature Importance')
+    plt.xticks(range(0, len(feat_imp)),name, rotation='vertical')
+    plt.ylabel('Feature Importance Score')
+    plt.show()
+
+def print_feat_imp(model, df):
+    import pandas as pd   
+    names = df.columns
+    features = sorted(zip(map(lambda x: round(x, 4), rfc_best.feature_importances_), names), reverse=True)
+    feat = pd.DataFrame(features)
+    feat.columns = ['Importance', 'Feature']
+    return feat
+
