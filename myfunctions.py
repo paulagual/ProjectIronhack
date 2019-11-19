@@ -79,6 +79,8 @@ def desc_cat_target(df, col, target, name='column'):
     
 def plot_feat_imp(model, number,predictors):
     import pandas as pd
+    import matplotlib.pyplot as plt
+    import seaborn as sns
     feat_imp = pd.Series(model.feature_importances_).sort_values(ascending=False)
     feat_imp = feat_imp[0:number]
     name = []
@@ -92,7 +94,7 @@ def plot_feat_imp(model, number,predictors):
 def print_feat_imp(model, df):
     import pandas as pd   
     names = df.columns
-    features = sorted(zip(map(lambda x: round(x, 4), rfc_best.feature_importances_), names), reverse=True)
+    features = sorted(zip(map(lambda x: round(x, 4), model.feature_importances_), names), reverse=True)
     feat = pd.DataFrame(features)
     feat.columns = ['Importance', 'Feature']
     return feat
